@@ -1,4 +1,4 @@
-# AIAgents
+# AI Agents
 
 This project implements 2 simple AI agents -
 
