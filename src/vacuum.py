@@ -64,12 +64,20 @@ class Bot:
 
         self.pos = new_pos
 
-env_states = [
-        [0, 0],
-        [0, 1],
-        [1, 0],
-        [1, 1]
-        ]
+def permutation(states, size):
+    if size <= 0:
+        return [[]]
+    l = []
+    for s in states:
+        for n in permutation(states, size - 1):
+            x = [s]
+            x.extend(n)
+            l.append(x)
+    return l
+
+size = 2
+
+env_states = permutation([0, 1], size)
 
 envs = []
 
