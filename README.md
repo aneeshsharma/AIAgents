@@ -21,4 +21,7 @@ In this scenario, there is a vacuum bot that cleans dust.
 -   Final score of the bot is the number of cells it has cleaned
 
 The following is the state space search graph of the given scenario:
+![Vacuum State Space Graph][VacuumStateSpace]
+
+[VacuumStateSpace]: [images/VacuumAgentStateSpace.png]
 
