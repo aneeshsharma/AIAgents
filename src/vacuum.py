@@ -31,8 +31,25 @@ class Env:
         return sum(self.states) == 0
 
     def __str__(self):
+        s = ["+", "-", "-", "-"] * self.size + ["+"]
+        s += ["\n"]
+        s += ["|", " ", " ", " "] * self.size + ["|"]
+        s += ["\n"]
+        s += ["|", " ", " ", " "] * self.size + ["|"]
+        s += ["\n"]
+        s += ["+", "-", "-", "-"] * self.size + ["+"]
+
+        for i in range(len(self.states)):
+            if self.states[i] > 0:
+                s[8 * self.size + 4 + 4*i + 2] = "#"
+
+        s[4*self.size + 2 + 4*self.bot.pos + 2] = "B"
+
+        return "".join(s)
+
+    def display(self):
         s = ""
-        s += f'Bot: {self.bot.pos}\n'
+        s += f'Bot: {self.bot.pos}'
         s += f'Env: {self.states}'
         return s
 
@@ -85,15 +102,17 @@ for i in [0, 1]:
     for states in env_states:
         envs.append(Env(i, [_ for _ in states]))
 
-for env in envs:
+for i in range(len(envs)):
+    env = envs[i]
+    print("Scenario: ", i + 1)
+    print("Initial state:")
     print(env)
-    for _ in range(1000):
+    print("Simulating...")
+    for j in range(1000):
         if env.is_clean():
             break
         env.step()
-        print(env)
 
     print("Score: ", env.bot.score)
-
-    print('-' * 20)
+    print()
 
