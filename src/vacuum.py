@@ -58,6 +58,7 @@ class Bot:
         self.pos = pos
         self.env = env
         self.score = 0
+        self.steps = 0
 
     def step(self):
         state = self.env.get(self.pos)
@@ -69,6 +70,7 @@ class Bot:
             self.move(1)
         else:
             self.move(-1)
+        self.steps += 1
 
     def move(self, direction: int):
         d = 0
@@ -92,27 +94,32 @@ def permutation(states, size):
             l.append(x)
     return l
 
-size = 2
+def run_simulation():
+    size = 2
 
-env_states = permutation([0, 1], size)
+    env_states = permutation([0, 1], size)
 
-envs = []
+    envs = []
 
-for i in [0, 1]:
-    for states in env_states:
-        envs.append(Env(i, [_ for _ in states]))
+    for i in [0, 1]:
+        for states in env_states:
+            envs.append(Env(i, [_ for _ in states]))
 
-for i in range(len(envs)):
-    env = envs[i]
-    print("Scenario: ", i + 1)
-    print("Initial state:")
-    print(env)
-    print("Simulating...")
-    for j in range(1000):
-        if env.is_clean():
-            break
-        env.step()
+    print("Simulating", len(envs), "scenarios...\n")
 
-    print("Score: ", env.bot.score)
-    print()
+    for i in range(len(envs)):
+        env = envs[i]
+        print("Scenario: ", i + 1)
+        print("Initial state:")
+        print(env)
+        print("Simulating...")
+        for _ in range(1000):
+            if env.is_clean():
+                break
+            env.step()
 
+        print("Steps:", env.bot.steps, "Score:", env.bot.score)
+        print()
+
+if __name__ == "__main__":
+    run_simulation()
