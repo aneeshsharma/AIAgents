@@ -122,6 +122,7 @@ state = (start[0], start[1])
 
 while state != (0, 0):
     print("\nState:", state)
+    old_state = state
     if a1.is_turn(root.turn):
         if h:
             print("Your turn")
@@ -132,19 +133,22 @@ while state != (0, 0):
         for c in root.child:
             if action == c.action:
                 flag = True
-                print("Player 1 plays", action)
+                #print("Player 1 plays", action)
                 root = c
                 state = (c.state[0], c.state[1])
         if not flag:
             print("Invalid move!")
+        print("Player 1", end=" ")
     elif a2.is_turn(root.turn):
         print("Player 2's turn")
         action = a2.play(root)
         for c in root.child:
             if action == c.action:
-                print("Player 2 plays", action)
+                #print("Player 2 plays", action)
                 root = c
                 state = (c.state[0], c.state[1])
+        print("Player 2", end=" ")
+    print("moves from", old_state, "to", state)
 
 print("\nState:", state)
 
