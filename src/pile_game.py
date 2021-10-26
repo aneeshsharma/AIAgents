@@ -104,7 +104,14 @@ start = input("Enter starting state: ")
 start = start.split()
 start = [int(i) for i in start]
 
-a1 = Agent(1)
+human_player = input("Human player?[y/N]")
+
+h = False
+
+if human_player == 'y' or human_player == 'Y':
+    h = True
+
+a1 = Agent(1, h)
 a2 = Agent(-1)
 
 root = Node((start[0], start[1]), (0, 0), 1)
@@ -116,13 +123,22 @@ state = (start[0], start[1])
 while state != (0, 0):
     print("\nState:", state)
     if a1.is_turn(root.turn):
+        if h:
+            print("Your turn")
+        else:
+            print("Player 1's turn")
         action = a1.play(root)
+        flag = False
         for c in root.child:
             if action == c.action:
+                flag = True
                 print("Player 1 plays", action)
                 root = c
                 state = (c.state[0], c.state[1])
+        if not flag:
+            print("Invalid move!")
     elif a2.is_turn(root.turn):
+        print("Player 2's turn")
         action = a2.play(root)
         for c in root.child:
             if action == c.action:
@@ -130,7 +146,16 @@ while state != (0, 0):
                 root = c
                 state = (c.state[0], c.state[1])
 
-if root.turn == 1:
-    print("Player 1 Wins!")
+print("\nState:", state)
+
+if h:
+    if root.turn == 1:
+        print("You lose!")
+    else:
+        print("You win")
 else:
-    print("Player 2 Wins!")
+    if root.turn == 1:
+        print("Player 2 Wins!")
+    else:
+        print("Player 1 Wins!")
+
