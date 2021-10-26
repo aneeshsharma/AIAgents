@@ -61,15 +61,20 @@ class Bot:
         self.steps = 0
 
     def step(self):
+        # 3 possible actions -
+        # Left, Right or Suck
         state = self.env.get(self.pos)
         if state > 0:
+            # Suck
             if self.env.suck(self.pos):
                 self.score += 1
-
-        if random.random() > 0.5:
-            self.move(1)
         else:
-            self.move(-1)
+            if random.random() > 0.5:
+                # Right
+                self.move(1)
+            else:
+                # Left
+                self.move(-1)
         self.steps += 1
 
     def move(self, direction: int):
