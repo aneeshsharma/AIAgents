@@ -49,9 +49,9 @@ class Env:
 
     def display(self):
         s = ""
-        s += f'Bot: {self.bot.pos}'
+        s += f'Bot: {self.bot.pos}\t'
         s += f'Env: {self.states}'
-        return s
+        print(s)
 
 class Bot:
     def __init__(self, pos: int, env: Env):
@@ -116,7 +116,7 @@ def run_simulation():
         env = envs[i]
         print("Scenario: ", i + 1)
         print("Initial state:")
-        print(env)
+        env.display()
         print("Simulating...")
         for _ in range(1000):
             if env.is_clean():

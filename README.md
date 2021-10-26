@@ -23,4 +23,8 @@ In this scenario, there is a vacuum bot that cleans dust.
 The following is the state space search graph of the given scenario:
 ![Vacuum State Space Graph][vacuum-state-space]
 
+The following shows the output of 2 simulations run separately:
+![Vacuum Simulation Screenhot][vacuum-ss]
+
 [vacuum-state-space]: images/VacuumAgentStateSpace.png
+[vacuum-ss]: images/vacuuum-ss.png
