@@ -63,7 +63,7 @@ Following image shows a bot vs human match:
 
 ![Bot vs Human][pile-human-ss]
 
-[vacuum-state-space]: images/VacuumAgentStateSpace.png
+[vacuum-state-space]: images/VacuumAgentStateSpace.svg
 [vacuum-ss]: images/vacuuum-ss.png
 [pile-bot-ss]: images/pile-bot-ss.png
 [pile-human-ss]: images/pile-human-ss.png
